@@ -1,25 +1,41 @@
-# Getting Started
+1. By using `Actuators` we can monitor and manage the application
+* What is the health of the application?
+* How many beans loaded into the application?
+* What configuration properties loaded to the application?
+* What is the heap info of the application?
+* How many threads are running in the application?
+* How many URL mappings are available in the application?
 
-### Reference Documentation
-For further reference, please consider the following sections:
+2. Add following dependency to enable actuators
 
-* [Official Gradle documentation](https://docs.gradle.org)
-* [Spring Boot Gradle Plugin Reference Guide](https://docs.spring.io/spring-boot/docs/2.7.0/gradle-plugin/reference/html/)
-* [Create an OCI image](https://docs.spring.io/spring-boot/docs/2.7.0/gradle-plugin/reference/html/#build-image)
-* [Spring Boot DevTools](https://docs.spring.io/spring-boot/docs/2.7.0/reference/htmlsingle/#using-boot-devtools)
-* [Spring Web](https://docs.spring.io/spring-boot/docs/2.7.0/reference/htmlsingle/#boot-features-developing-web-applications)
-* [Spring Boot Actuator](https://docs.spring.io/spring-boot/docs/2.7.0/reference/htmlsingle/#production-ready)
+* maven
+```
+<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-actuator -->
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-actuator</artifactId>
+</dependency>
 
-### Guides
-The following guides illustrate how to use some features concretely:
+```
+* Gradle
+```
+// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-actuator
+implementation group: 'org.springframework.boot', name: 'spring-boot-starter-actuator'
+```
 
-* [Building a RESTful Web Service](https://spring.io/guides/gs/rest-service/)
-* [Serving Web Content with Spring MVC](https://spring.io/guides/gs/serving-web-content/)
-* [Building REST services with Spring](https://spring.io/guides/tutorials/bookmarks/)
-* [Building a RESTful Web Service with Spring Boot Actuator](https://spring.io/guides/gs/actuator-service/)
+3. start the application and hit the following end point
+``` 
+http://localhost:9093/actuator/actuator 
+```
 
-### Additional Links
-These additional references should also help you:
+4. By default, only `/health` endpoint is enabled in actuators.
+```
+http://localhost:9093/actuator/actuator/health 
+```
 
-* [Gradle Build Scans – insights for your project's build](https://scans.gradle.com#gradle)
-
+5. To enable all the end points add the following line in the `application.properties` file
+```
+management.endpoints.web.exposure.include=*
+```
+then 13 end points will be exposed under actuators
+![img.png](img.png)
