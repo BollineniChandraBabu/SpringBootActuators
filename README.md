@@ -12,7 +12,9 @@ This microservice provides Actuator services
    <br/> `./gradlew build`
 
 2. **Build Docker image**
-   <br/> `docker build -t batch .`
+   <br/> `docker build -t actuator .`
 
 3. **Run Docker image**
-   <br/> `docker run -p 8092:8092 batch`
+   <br/> `docker run -p 8092:8092 actuator`
+
+## Documentation[]
